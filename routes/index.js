@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   ERROR_MESSAGES,
   isValidDate,
-  isValidFormat,
   isValidUnix,
   dateToUTC,
   unixToUTC,
@@ -28,7 +27,7 @@ router.get("/:date?", function (req, res) {
       utc: unixToUTC(date),
     };
     res.json(response);
-  } else if (isValidDate(date) && isValidFormat(date)) {
+  } else if (isValidDate(date)) {
     let response = {
       unix: dateToUnixTimestamp(date),
       utc: dateToUTC(date),

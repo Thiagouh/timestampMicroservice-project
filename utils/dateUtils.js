@@ -3,11 +3,6 @@ const ERROR_MESSAGES = {
   invalidDataFormat: "Invalid Date",
 };
 
-function isValidFormat(dateString) {
-  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  return dateRegex.test(dateString);
-}
-
 function isValidDate(dateString) {
   const date = new Date(dateString);
   return date instanceof Date && !isNaN(date);
@@ -51,7 +46,6 @@ function createActualDate() {
 
 module.exports = {
   ERROR_MESSAGES,
-  isValidFormat,
   isValidDate,
   isValidUnix,
   dateToUTC,
