@@ -3,30 +3,15 @@ const ERROR_MESSAGES = {
   invalidDataFormat: "Invalid Date",
 };
 
-function isValidDate(dateString) {
-  const date = new Date(dateString);
-  return date instanceof Date && !isNaN(date);
-}
-
 function isValidUnix(unixTimestamp) {
   const timestamp = Number(unixTimestamp);
   return !isNaN(timestamp) && timestamp >= 0;
-}
-
-function dateToUTC(dateString) {
-  const date = new Date(dateString + "T00:00:00Z");
-  return date.toUTCString();
 }
 
 function unixToUTC(unixTimestamp) {
   const unixTimestampNumber = unixToUnixTimestamp(unixTimestamp);
   const date = new Date(unixTimestampNumber);
   return date.toUTCString();
-}
-
-function dateToUnixTimestamp(dateString) {
-  const date = new Date(dateString + "T00:00:00Z");
-  return date.getTime();
 }
 
 function unixToUnixTimestamp(unixTimestamp) {
@@ -46,11 +31,8 @@ function createActualDate() {
 
 module.exports = {
   ERROR_MESSAGES,
-  isValidDate,
   isValidUnix,
-  dateToUTC,
   unixToUTC,
-  dateToUnixTimestamp,
   unixToUnixTimestamp,
   createActualDate,
 };
