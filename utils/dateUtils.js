@@ -10,11 +10,7 @@ function isValidFormat(dateString) {
 
 function isValidDate(dateString) {
   const date = new Date(dateString);
-  return (
-    date instanceof Date &&
-    !isNaN(date) &&
-    dateString === date.toISOString().split("T")[0]
-  );
+  return date instanceof Date && !isNaN(date);
 }
 
 function isValidUnix(unixTimestamp) {
