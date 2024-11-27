@@ -1,6 +1,6 @@
 const ERROR_MESSAGES = {
   dataRequired: "Date is required.",
-  invalidDataFormat: "Invalid date format. Use YYYY-MM-DD.",
+  invalidDataFormat: "Invalid Date",
 };
 
 function isValidFormat(dateString) {
@@ -42,6 +42,17 @@ function unixToUnixTimestamp(unixTimestamp) {
   return Number(unixTimestamp);
 }
 
+function createActualDate() {
+  const date = new Date();
+  const dateUTC = date.toUTCString();
+  const dateUnixTimestamp = date.getTime();
+
+  return {
+    unix: dateUnixTimestamp,
+    utc: dateUTC,
+  };
+}
+
 module.exports = {
   ERROR_MESSAGES,
   isValidFormat,
@@ -51,4 +62,5 @@ module.exports = {
   unixToUTC,
   dateToUnixTimestamp,
   unixToUnixTimestamp,
+  createActualDate,
 };

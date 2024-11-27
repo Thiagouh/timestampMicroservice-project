@@ -9,6 +9,7 @@ const {
   unixToUTC,
   dateToUnixTimestamp,
   unixToUnixTimestamp,
+  createActualDate,
 } = require("../utils/dateUtils");
 
 router.get("/hello", function (req, res) {
@@ -17,9 +18,8 @@ router.get("/hello", function (req, res) {
 
 router.get("/:date?", function (req, res) {
   let date = req.params.date;
-  console.log(date);
   if (!date) {
-    return res.status(400).send({ error: ERROR_MESSAGES.dataRequired });
+    res.json(createActualDate());
   }
 
   if (isValidUnix(date)) {
@@ -27,13 +27,13 @@ router.get("/:date?", function (req, res) {
       unix: unixToUnixTimestamp(date),
       utc: unixToUTC(date),
     };
-    res.send(response);
+    res.json(response);
   } else if (isValidDate(date) && isValidFormat(date)) {
     let response = {
       unix: dateToUnixTimestamp(date),
       utc: dateToUTC(date),
     };
-    res.send(response);
+    res.json(response);
   } else {
     res.status(400).send({ error: ERROR_MESSAGES.invalidDataFormat });
   }
